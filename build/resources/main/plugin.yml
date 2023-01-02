@@ -1,11 +1,11 @@
 name: SuperUser
-version: '1.0.0'
+version: '1.0.1'
 main: io.github.zerthick.superuser.SuperUser
 api-version: 1.19
 authors: [ Zerthick ]
-description: A simple paper plugint that allows you to switch in and out of a super user permission group.
+description: A simple paper plugin that allows you to switch in and out of a superuser mode.
 commands:
   sudo:
     description: "Enter or exit Super User mode"
-    permission: "superuser.sudo"
+    permission: "superuser.commands.sudo"
     aliases: [ 'duty' ]

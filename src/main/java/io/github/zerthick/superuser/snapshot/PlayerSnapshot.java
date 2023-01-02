@@ -18,8 +18,9 @@ public class PlayerSnapshot {
 
     public PlayerSnapshot(Player player) {
         this.player = player;
-        inventory = player.getInventory().getContents();
-        armor = player.getInventory().getArmorContents();
+
+        inventory = copyInventory(player.getInventory().getContents());
+        armor = copyInventory(player.getInventory().getArmorContents());
         level = player.getLevel();
         exp = player.getExp();
         health = player.getHealth();
@@ -35,5 +36,13 @@ public class PlayerSnapshot {
         player.setHealth(health);
         player.setSaturation(saturation);
         player.teleport(location);
+    }
+
+    public ItemStack[] copyInventory(ItemStack[] inventory) {
+        ItemStack[] copy = new ItemStack[inventory.length];
+        for (int i = 0; i < inventory.length; i++) {
+            copy[i] = new ItemStack(inventory[i]);
+        }
+        return copy;
     }
 }
