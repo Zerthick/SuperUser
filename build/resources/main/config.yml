@@ -1,0 +1,8 @@
+# Commands to be executed when entering Super User mode
+enterCommands:
+  - "op %p"
+  - "gamemode creative %p"
+# Commands to be executed when exiting Super User mode
+exitCommands:
+  - "deop %p"
+  - "gamemode survival %p"
