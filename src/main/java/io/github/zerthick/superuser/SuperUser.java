@@ -4,12 +4,15 @@ import io.github.zerthick.superuser.snapshot.PlayerSnapshotManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Logger;
 
-public final class SuperUser extends JavaPlugin {
+public final class SuperUser extends JavaPlugin implements Listener {
 
     private Logger logger;
     private ConfigurationSettings configurationSettings;
@@ -23,6 +26,8 @@ public final class SuperUser extends JavaPlugin {
         configurationSettings = new ConfigurationSettings(this.getConfig());
 
         snapshotManager = new PlayerSnapshotManager(this);
+
+        getServer().getPluginManager().registerEvents(this, this);  //register events
 
         // Plugin startup logic
         logger.info(String.format("%s version %s by %s enabled!", getDescription().getName(), getDescription().getVersion(), getDescription().getAuthors()));
@@ -41,6 +46,15 @@ public final class SuperUser extends JavaPlugin {
 
         }
         return false;
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        // Remove player from superuser mode on disconnect
+        if (snapshotManager.hasSnapshot(player)) {
+            snapshotManager.restorePlayerSnapshot(player);
+        }
     }
 
     @Override
