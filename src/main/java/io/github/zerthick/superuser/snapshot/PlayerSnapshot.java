@@ -41,7 +41,9 @@ public class PlayerSnapshot {
     public ItemStack[] copyInventory(ItemStack[] inventory) {
         ItemStack[] copy = new ItemStack[inventory.length];
         for (int i = 0; i < inventory.length; i++) {
-            copy[i] = new ItemStack(inventory[i]);
+            if (inventory[i] != null) {
+                copy[i] = new ItemStack(inventory[i]);
+            }
         }
         return copy;
     }
