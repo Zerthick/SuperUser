@@ -1,9 +1,0 @@
-# For both sets of commands %p will be replaced with the player's name and %w with the player's world
-# Commands to be executed when entering superuser mode
-enterCommands:
-  - "op %p"
-  - "gamemode creative %p"
-# Commands to be executed when exiting superuser mode
-exitCommands:
-  - "deop %p"
-  - "gamemode survival %p"
