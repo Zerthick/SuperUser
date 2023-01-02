@@ -10,7 +10,7 @@ superuser mode.
 A sample plugin configuration is given below
 
 ```yaml
-# For both sets of commands %p will be replaced with the players name and %w with the player's world
+# For both sets of commands %p will be replaced with the player's name and %w with the player's world
 # Commands to be executed when entering superuser mode
 enterCommands:
   - "op %p"
